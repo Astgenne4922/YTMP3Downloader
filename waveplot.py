@@ -1,10 +1,17 @@
-from tkinter.constants import BOTH, TOP
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-from matplotlib.figure import Figure
-from scipy.io.wavfile import read
-from tkinter.simpledialog import Dialog
-from tkinter.ttk import Button, Frame
+"""
+#region Imports
+"""
+
+import matplotlib.backends.backend_tkagg as tkagg
+import tkinter.simpledialog as dlg
+import matplotlib.figure as fg
+import scipy.io.wavfile as wf
+import tkinter.ttk as ttk
 import numpy as np
+
+"""
+#endregion
+"""
 
 
 class Draggable_Min_Max:
@@ -33,10 +40,8 @@ class Draggable_Min_Max:
             ]
 
     def drag_update(self, event):
-        containsMin, _ = self.lineMin.contains(event)
-        containsMax, _ = self.lineMax.contains(event)
         if event.xdata is not None:
-            if containsMin:
+            if self.lineMin.contains(event)[0]:
                 self.lineMin.set_xdata(
                     self.min
                     if self.min > event.xdata
@@ -44,7 +49,7 @@ class Draggable_Min_Max:
                     if self.max < event.xdata
                     else event.xdata
                 )
-            elif containsMax:
+            elif self.lineMax.contains(event)[0]:
                 self.lineMax.set_xdata(
                     self.min
                     if self.min > event.xdata
@@ -82,36 +87,36 @@ class Draggable_Min_Max:
         return sorted((self.lineMin.get_xdata(), self.lineMax.get_xdata()))
 
 
-class CutDialog(Dialog):
+class CutDialog(dlg.Dialog):
     def buttonbox(self) -> None:
         self.resizable(0, 0)
         self.focus()
 
-        box = Frame(self)
+        box = ttk.Frame(self)
+        box.pack()
 
-        plotFrame = Frame(box)
-        btnFrame = Frame(box)
+        plotFrame = ttk.Frame(box)
+        plotFrame.pack()
 
-        samplerate, data = read("temp/aud.wav")
+        btnFrame = ttk.Frame(box)
+        btnFrame.pack()
+
+        samplerate, data = wf.read(self.master.WAV)
         duration = len(data) / samplerate
         time = np.linspace(0, duration, len(data))
 
-        fig = Figure(figsize=(10, 4), dpi=100)
+        fig = fg.Figure(figsize=(10, 4), dpi=100)
         ax = fig.add_subplot(111)
-        canvas = FigureCanvasTkAgg(fig, master=plotFrame)
+        canvas = tkagg.FigureCanvasTkAgg(fig, master=plotFrame)
 
         ax.plot(time, data)
         self.min_max = Draggable_Min_Max(fig, ax, canvas, 0, int(time[-1]))
         self.result = (0, int(time[-1]))
 
         canvas.draw()
-        canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=1)
+        canvas.get_tk_widget().pack(side="top", fill="both", expand=1)
 
-        Button(master=btnFrame, text="Ok", command=self.__choice).pack()
-
-        plotFrame.pack()
-        btnFrame.pack()
-        box.pack()
+        ttk.Button(master=btnFrame, text="Ok", command=self.__choice).pack()
 
     def __choice(self) -> None:
         self.ok()

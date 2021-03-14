@@ -1,30 +1,13 @@
-import pytube, subprocess, pathlib, requests
+import tempfile as tf
+import tkinter as tk
+import gui
 
-temps = [
-    pathlib.Path(f"temp/{x}")
-    for x in ["phase0.mp4", "phase1.mp3", "phase2.mp3", "phase3.mp3"]
-]
+if __name__ == "__main__":
+    with tf.TemporaryDirectory() as temp_dir:
+        root = tk.Tk()
+        root.resizable(0, 0)
+        root.geometry("600x375")
 
-v = pytube.YouTube(
-    "https://www.youtube.com/watch?v=vcGbefQBvJ4&list=PLNihRoBcqwyTqJXi-0e6T84TnC80amRfZ&index=1"
-)
-t = v.thumbnail_url
+        gui.Window(root, temp_dir).pack(side="top", fill="both", expand=True)
 
-v.streams.get_highest_resolution().download(filename="temp/phase0")
-
-subprocess.call(f"FFmpeg/bin/ffmpeg -i temp/phase0.mp4 temp/phase1.mp3")
-subprocess.call(
-    f"FFmpeg/bin/ffmpeg -i temp/phase1.mp3 -i {t} -map 0:0 -map 1:0 -c copy -id3v2_version 3 temp/phase2.mp3"
-)
-subprocess.call(
-    f"FFmpeg/bin/ffmpeg -ss 0 -t 40 -i temp/phase2.mp3 -c copy -id3v2_version 3 temp/phase3.mp3"
-)
-subprocess.call(
-    f'FFmpeg/bin/ffmpeg -i temp/phase3.mp3 -c copy -id3v2_version 3 -metadata title="Anchor" -metadata artist="Yoasobi" -metadata album="sas" "Yoasobi - Anchor.mp3"'
-)
-
-for f in temps:
-    if f.is_file():
-        f.unlink()
-    else:
-        f.rmdir()
+        root.mainloop()
