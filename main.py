@@ -7,6 +7,7 @@ if __name__ == "__main__":
         root = tk.Tk()
         root.resizable(0, 0)
         root.geometry("600x375")
+        root.title("Youtube MP3 Converter")
 
         gui.Window(root, temp_dir).pack(side="top", fill="both", expand=True)
 
