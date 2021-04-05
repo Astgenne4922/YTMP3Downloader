@@ -1,0 +1,24 @@
+<resources>
+    <string name="artist">Artista</string>
+    <string name="title">Titolo</string>
+    <string name="convert">Converti</string>
+    <string name="cutting_range">Intervallo Ritaglio Audio</string>
+    <string name="start">Inizio</string>
+    <string name="end">Fine</string>
+    <string name="cancel">Annulla</string>
+    <string name="noti_title_start_search">Cercando il Video</string>
+    <string name="noti_title_not_found">Video Non Trovato</string>
+    <string name="noti_title_song_conversion">Conversione</string>
+    <string name="noti_text_retrieve_audio">Recupero Audio</string>
+    <string name="toast_invalid_artist">Artista non Valido</string>
+    <string name="toast_invalid_title">Titolo non Valido</string>
+    <string name="alert_insert_url">Inserisci un valido link YouTube o l\'ID di un video</string>
+    <string name="toast_ffmpeg_not_supp">FFmpeg non è supportato</string>
+    <string name="noti_title_video_found">Video Trovato</string>
+    <string name="noti_text_converting">Convertendo</string>
+    <string name="noti_text_conv_completed">"Conversione Completata"</string>
+    <string name="noti_text_conv_fail">Conversione Fallita</string>
+    <string name="toast_conv_run">Una conversione è ancora in corso</string>
+    <string name="noti_title_not_retrieve">Impossibile Recuperare il file Audio</string>
+    <string name="noti_text_file_saved">File salvato in:\n</string>
+</resources>

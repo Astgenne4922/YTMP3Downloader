@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name" translatable="false">YouTube MP3 Converter</string>
+    <string name="video_thumbnail" translatable="false">Video Thumbnail</string>
+    <string name="artist">Artist</string>
+    <string name="title">Title</string>
+    <string name="convert">Convert</string>
+    <string name="cutting_range">Audio Cutting Range</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="ok" translatable="false">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="noti_title_start_search">Searching the video</string>
+    <string name="noti_title_not_found">Video Not Found</string>
+    <string name="noti_title_song_conversion">Song Conversion</string>
+    <string name="noti_text_retrieve_audio">Retrieving Audio</string>
+    <string name="toast_invalid_artist">Invalid artist name</string>
+    <string name="toast_invalid_title">Invalid title</string>
+    <string name="alert_insert_url">Insert a valid YouTube link or video ID</string>
+    <string name="toast_ffmpeg_not_supp">FFmpeg Is Not Supported</string>
+    <string name="noti_title_video_found">Video Found</string>
+    <string name="noti_text_converting">Converting</string>
+    <string name="noti_text_conv_completed">"Conversion completed"</string>
+    <string name="noti_text_conv_fail">Conversion failed</string>
+    <string name="toast_conv_run">A conversion is already running</string>
+    <string name="noti_title_not_retrieve">Couldn\'t Retrieve Audio</string>
+    <string name="noti_text_file_saved">File saved in:\n</string>
+</resources>
